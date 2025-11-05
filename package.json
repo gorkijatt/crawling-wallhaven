@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "crawl": "node src/crawler.js"
+    "crawl": "node src/crawler.js",
+    "test-db": "node src/test-db.js"
   },
   "keywords": ["wallhaven", "crawler", "scraper"],
   "author": "",

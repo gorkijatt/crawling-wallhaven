@@ -7,16 +7,26 @@
   "scripts": {
     "start": "node src/index.js",
     "crawl": "node src/crawler.js",
+    "crawl:puppeteer": "node src/crawler-puppeteer.js",
     "test-db": "node src/test-db.js"
   },
-  "keywords": ["wallhaven", "crawler", "scraper"],
+  "keywords": [
+    "wallhaven",
+    "crawler",
+    "scraper"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
     "axios": "^1.6.0",
+    "axios-cookiejar-support": "^6.0.4",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
-    "@supabase/supabase-js": "^2.39.0",
-    "mongodb": "^6.3.0"
+    "mongodb": "^6.3.0",
+    "tough-cookie": "^5.1.2"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^23.0.0"
   }
 }

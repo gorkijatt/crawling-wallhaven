@@ -88,10 +88,29 @@ DELAY_MS=1000
 
 ## Usage
 
-Run the crawler:
+### ⚠️ Important: Cloudflare Protection
+
+Wallhaven uses Cloudflare DDoS protection. You have two options:
+
+#### Option A: Regular Crawler (Simple, but may be blocked)
 ```bash
 npm run crawl
 ```
+
+#### Option B: Puppeteer Crawler (Recommended, bypasses Cloudflare)
+```bash
+# First time only: install Puppeteer
+npm install puppeteer
+
+# Run the Puppeteer crawler
+npm run crawl:puppeteer
+```
+
+**💡 If you get "redirect" or "503" errors with Option A, use Option B!**
+
+See `CLOUDFLARE_SOLUTION.md` for detailed information.
+
+### How It Works
 
 The crawler will:
 1. Connect to your chosen database
@@ -173,6 +192,11 @@ crawling-wallhaven/
 
 ## Troubleshooting
 
+**"Maximum number of redirects" or "503 Service Unavailable":**
+- Wallhaven has Cloudflare protection
+- Solution: Use `npm run crawl:puppeteer` instead
+- See `CLOUDFLARE_SOLUTION.md` for details
+
 **"Missing Supabase credentials" error:**
 - Make sure `.env` file exists and has correct values
 - Check that SUPABASE_URL and SUPABASE_KEY are set
@@ -181,6 +205,7 @@ crawling-wallhaven/
 - Run the SQL from `setup-supabase.sql` in Supabase SQL Editor
 
 **"No tags found" on page 1:**
+- Try the Puppeteer crawler: `npm run crawl:puppeteer`
 - The website structure may have changed
 - Check if Wallhaven is accessible from your location
 
@@ -188,6 +213,10 @@ crawling-wallhaven/
 - Verify your IP is whitelisted in MongoDB Atlas
 - Check that the connection string is correct
 - Ensure database user has read/write permissions
+
+**Puppeteer "Failed to launch browser":**
+- Install system dependencies (see CLOUDFLARE_SOLUTION.md)
+- On Linux: `sudo apt-get install -y libnss3 libatk-bridge2.0-0`
 
 ## License
 
